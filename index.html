@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Demo conceptual de NØX/DRIVE, preworkout de estética atlética premium con tres sabores.">
+  <meta property="og:title" content="NØX/DRIVE — Break the static">
+  <meta property="og:description" content="Demo ficticia de e-commerce DTC para un preworkout premium.">
+  <meta property="og:type" content="website">
+  <title>NØX/DRIVE — Preworkout premium · Demo</title>
+  <style>
+    :root {
+      --ink:#07080a; --panel:#101216; --panel-2:#171a1f; --paper:#f4f1e8;
+      --muted:#9a9ea6; --line:rgba(255,255,255,.14); --accent:#d8ff38;
+      --accent-rgb:216,255,56; --accent-deep:#9dbc00; --danger:#ff4d36;
+      --max:1240px; --ease:cubic-bezier(.2,.8,.2,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;background:var(--ink);color:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}
+    body.cart-open{overflow:hidden}
+    button,a,input{font:inherit}
+    button,a{touch-action:manipulation}
+    button{color:inherit}
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+    ::selection{background:var(--accent);color:#000}
+    .skip{position:fixed;left:1rem;top:-5rem;z-index:200;background:var(--accent);color:#000;padding:.8rem 1rem;font-weight:900}.skip:focus{top:1rem}
+    .noise{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .eyebrow{margin:0 0 1rem;color:var(--accent);font-size:.72rem;font-weight:950;letter-spacing:.22em;text-transform:uppercase}
+    .display{font-family:Impact,"Arial Narrow",sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.045em;line-height:.86;margin:0}
+    .section{padding:110px 0;position:relative}
+    .section-head{display:grid;grid-template-columns:1.1fr .8fr;gap:4rem;align-items:end;margin-bottom:48px}
+    .section-head h2{font-size:clamp(3rem,7vw,6.4rem)}
+    .section-head p{color:#b5b8be;font-size:1.05rem;max-width:580px;margin:0}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:.65rem;border:1px solid transparent;padding:1rem 1.25rem;min-height:52px;font-size:.78rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+    .btn:hover{transform:translateY(-3px)}
+    .btn-primary{background:var(--accent);color:#050606}.btn-primary:hover{background:#fff}
+    .btn-ghost{border-color:var(--line);background:rgba(255,255,255,.03)}.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .top-strip{background:var(--accent);color:#070807;text-align:center;font-size:.68rem;font-weight:950;letter-spacing:.15em;text-transform:uppercase;padding:8px 10px}
+    header{position:sticky;top:0;z-index:80;background:rgba(7,8,10,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .brand{font-family:Impact,"Arial Narrow",sans-serif;font-size:1.55rem;letter-spacing:.04em}.brand b{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:1.9rem}.nav-links a{font-size:.71rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#cacdd2;transition:color .2s}.nav-links a:hover{color:var(--accent)}
+    .cart-trigger{background:transparent;border:1px solid var(--line);padding:.7rem .85rem;cursor:pointer;font-size:.72rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}.cart-trigger:hover{border-color:var(--accent)}
+    .cart-count{display:inline-grid;place-items:center;background:var(--accent);color:#000;width:22px;height:22px;border-radius:50%;margin-left:.45rem}
+    .menu-toggle{display:none;border:0;background:none;font-size:1.3rem;cursor:pointer}
+
+    .hero{min-height:calc(100vh - 102px);display:grid;align-items:center;position:relative;isolation:isolate;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:58vw;height:58vw;right:-12vw;top:2%;background:radial-gradient(circle,rgba(var(--accent-rgb),.2),transparent 65%);filter:blur(10px);z-index:-2}
+    .speed-lines{position:absolute;inset:0;z-index:-1;opacity:.3;background:repeating-linear-gradient(112deg,transparent 0 88px,rgba(255,255,255,.05) 90px 91px,transparent 93px 150px);mask-image:linear-gradient(90deg,transparent,#000)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:70px 0 60px}
+    .hero h1{font-size:clamp(4.6rem,10vw,9.7rem)}
+    .hero h1 span{display:block;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.72)}
+    .hero-copy{max-width:600px;color:#c5c7cc;font-size:1.08rem;margin:1.7rem 0 2rem}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+    .micro{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:1.8rem;color:#8f939b;font-size:.69rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.micro span:before{content:"✓";color:var(--accent);margin-right:.4rem}
+    .product-stage{min-height:610px;position:relative;display:grid;place-items:center;perspective:1000px}
+    .orbit{position:absolute;width:510px;height:510px;border:1px solid rgba(var(--accent-rgb),.28);border-radius:50%;animation:spin 18s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;width:10px;height:10px;background:var(--accent);border-radius:50%;box-shadow:0 0 25px var(--accent)}.orbit:before{top:50px;left:75px}.orbit:after{bottom:55px;right:72px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .burst{position:absolute;width:440px;height:440px;background:repeating-conic-gradient(from 12deg,rgba(var(--accent-rgb),.13) 0 1.2deg,transparent 1.4deg 8deg);border-radius:50%;animation:spin 35s linear infinite reverse}
+    .jar-wrap{position:relative;filter:drop-shadow(0 42px 40px rgba(0,0,0,.65));transform:rotate(3deg);transition:transform .5s var(--ease)}.jar-wrap:hover{transform:rotate(0) translateY(-8px)}
+    .jar{width:285px;height:370px;position:relative;background:linear-gradient(90deg,#141619,#30343a 45%,#0c0d0f 94%);border-radius:26px 26px 46px 46px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.13),inset 25px 0 30px rgba(255,255,255,.03)}
+    .lid{position:absolute;z-index:3;top:-34px;left:-8px;width:301px;height:76px;border-radius:18px 18px 10px 10px;background:repeating-linear-gradient(90deg,#111317 0 5px,#262a2f 6px 8px);border-top:4px solid #353a40;box-shadow:0 10px 18px #000}
+    .label{position:absolute;inset:55px 12px 18px;border:1px solid rgba(var(--accent-rgb),.7);background:linear-gradient(155deg,rgba(var(--accent-rgb),.19),transparent 40%),#0b0c0e;clip-path:polygon(12px 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,0 100%,0 12px);padding:26px 20px;display:flex;flex-direction:column;justify-content:space-between}
+    .label .code{font:800 .58rem ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em;color:var(--accent)}
+    .label-logo{font-family:Impact,"Arial Narrow",sans-serif;font-size:3.2rem;line-height:.79;letter-spacing:-.02em}.label-logo i{display:block;color:var(--accent);font-style:normal}
+    .label-flavor{font-size:.7rem;font-weight:950;text-transform:uppercase;letter-spacing:.16em;border-top:1px solid var(--accent);padding-top:10px}
+    .label-foot{display:flex;justify-content:space-between;color:#aeb0b4;font-size:.54rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+    .float-tag{position:absolute;background:rgba(12,14,17,.85);border:1px solid var(--line);backdrop-filter:blur(10px);padding:12px 15px;font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.tag-a{right:-42px;top:130px}.tag-b{left:-52px;bottom:72px}.float-tag strong{display:block;color:var(--accent);font-size:1.1rem;letter-spacing:0}
+    .flavor-dock{position:absolute;bottom:0;right:0;display:flex;gap:8px}.flavor-dot{width:48px;height:48px;border:1px solid var(--line);background:#111;cursor:pointer;position:relative}.flavor-dot:after{content:"";position:absolute;inset:10px;background:var(--swatch);border-radius:50%;box-shadow:0 0 16px var(--swatch)}.flavor-dot[aria-pressed="true"]{border-color:#fff;transform:translateY(-5px)}
+
+    .ticker{overflow:hidden;border-block:1px solid var(--line);background:#0c0e11;transform:rotate(-1.5deg);width:102%;margin-left:-1%;position:relative;z-index:4}.ticker-track{width:max-content;display:flex;gap:2rem;padding:15px 0;animation:marquee 22s linear infinite;font-family:Impact,"Arial Narrow",sans-serif;font-size:1.15rem;letter-spacing:.05em;text-transform:uppercase}.ticker-track span:nth-child(odd){color:var(--accent)}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    .benefits{background:var(--paper);color:#08090a}.benefits .eyebrow{color:#3e5200}.benefits .section-head p{color:#51545a}
+    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid #111}
+    .benefit{padding:36px 28px 32px 0;border-right:1px solid rgba(0,0,0,.18);position:relative}.benefit:not(:first-child){padding-left:28px}.benefit:last-child{border-right:0}.benefit .num{font:900 4.8rem/1 Impact,"Arial Narrow",sans-serif;color:transparent;-webkit-text-stroke:1px #888}.benefit h3{font:900 1.5rem/1 Impact,"Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:.8rem 0}.benefit p{color:#575a60;margin:0;max-width:340px}
+
+    .flavors{overflow:hidden}.flavor-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:5rem;align-items:center}.flavor-list{display:grid;gap:12px}.flavor-card{width:100%;text-align:left;padding:22px;border:1px solid var(--line);background:#0d0f12;cursor:pointer;display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:16px;transition:.3s var(--ease)}.flavor-card:hover,.flavor-card[aria-pressed="true"]{border-color:var(--accent);background:rgba(var(--accent-rgb),.08);transform:translateX(8px)}.swatch{width:42px;height:42px;border-radius:50%;background:var(--swatch);box-shadow:0 0 20px color-mix(in srgb,var(--swatch),transparent 50%)}.flavor-card strong{display:block;text-transform:uppercase;font-size:.95rem;letter-spacing:.08em}.flavor-card small{color:#92969e}.flavor-card b{font-size:.8rem;color:var(--accent)}
+    .flavor-copy{position:relative;padding-left:4rem}.flavor-copy:before{content:attr(data-index);position:absolute;left:0;top:-.2rem;color:var(--accent);font:900 2rem Impact,"Arial Narrow",sans-serif}.flavor-copy h3{font-size:clamp(3.5rem,7vw,6rem);margin-bottom:1.5rem}.flavor-copy p{font-size:1.12rem;color:#b5b8be;max-width:590px}.flavor-notes{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.5rem}.flavor-notes span{border:1px solid var(--line);padding:.55rem .75rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
+
+    .formula{background:#0d0f12}.formula-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem}.ingredients{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.ingredient{background:#101216;padding:25px}.ingredient-top{display:flex;justify-content:space-between;gap:1rem;align-items:start}.ingredient strong{text-transform:uppercase;letter-spacing:.07em}.ingredient b{font:900 1.5rem Impact,"Arial Narrow",sans-serif;color:var(--accent);white-space:nowrap}.ingredient p{color:#969aa2;font-size:.89rem;margin:.75rem 0 0}.formula-panel{border:1px solid var(--accent);background:linear-gradient(145deg,rgba(var(--accent-rgb),.12),transparent 55%);padding:34px;align-self:start;position:sticky;top:110px}.formula-panel h3{font-size:2.3rem;margin-bottom:1rem}.formula-panel ul{list-style:none;padding:0;margin:1.5rem 0}.formula-panel li{padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.84rem;display:flex;justify-content:space-between}.warning{font-size:.76rem;color:#adb0b7;border-left:3px solid var(--accent);padding-left:1rem;margin-top:1.5rem}
+
+    .ritual{background:var(--accent);color:#080908;overflow:hidden}.ritual .eyebrow{color:#253000}.ritual-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:6rem;align-items:start}.ritual h2{font-size:clamp(4rem,8vw,7.5rem)}.steps{counter-reset:ritual}.step{counter-increment:ritual;display:grid;grid-template-columns:76px 1fr;gap:1.5rem;border-top:2px solid #0c0d0e;padding:25px 0}.step:before{content:"0" counter(ritual);font:900 2.2rem Impact,"Arial Narrow",sans-serif}.step h3{font:900 1.25rem Impact,"Arial Narrow",sans-serif;text-transform:uppercase;margin:0 0 .35rem}.step p{margin:0;color:#34372e}.ritual-note{font-size:.78rem;font-weight:750;margin-top:1.2rem}
+
+    .proof-head{text-align:center;max-width:850px;margin:0 auto 3rem}.proof-head h2{font-size:clamp(3rem,7vw,6rem)}.demo-pill{display:inline-block;background:#2b3036;border:1px solid #4b535e;color:#e3e6ea;padding:.45rem .65rem;font-size:.64rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.review{background:var(--panel);border:1px solid var(--line);padding:28px;min-height:260px;display:flex;flex-direction:column}.stars{color:var(--accent);letter-spacing:.25em}.review blockquote{font-size:1.08rem;margin:1.4rem 0;flex:1}.review footer{display:flex;align-items:center;gap:.8rem;color:#8e9299;font-size:.75rem}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#262a30;color:var(--accent);font-weight:950}.review footer strong{display:block;color:#fff;text-transform:uppercase;letter-spacing:.06em}
+
+    .bundles{background:var(--paper);color:#090a0b}.bundles .eyebrow{color:#3e5200}.bundle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.bundle{border:1px solid #a6a59f;background:#e9e6dd;padding:28px;position:relative;display:flex;flex-direction:column;transition:.3s var(--ease)}.bundle:hover{transform:translateY(-7px);box-shadow:12px 12px 0 #111}.bundle.featured{background:#0d0f12;color:#fff;border-color:#0d0f12}.bundle-badge{position:absolute;right:16px;top:16px;background:var(--accent);color:#000;padding:.35rem .55rem;font-size:.6rem;font-weight:950;text-transform:uppercase;letter-spacing:.08em}.bundle h3{font:900 2rem Impact,"Arial Narrow",sans-serif;text-transform:uppercase;margin:1rem 0 .25rem}.bundle .sub{color:#63666b;font-size:.85rem}.bundle.featured .sub{color:#a9adb4}.bundle-price{font:900 3.8rem Impact,"Arial Narrow",sans-serif;margin:1.5rem 0}.bundle-price small{font:800 .75rem system-ui;color:#74777d}.bundle ul{list-style:none;padding:0;margin:0 0 1.7rem;flex:1}.bundle li{border-top:1px solid currentColor;padding:.7rem 0;font-size:.83rem;opacity:.72}.bundle .btn{width:100%}.bundle:not(.featured) .btn-primary{background:#111;color:#fff}.bundle:not(.featured) .btn-primary:hover{background:var(--accent);color:#000}
+    .demo-note{color:#666;font-size:.74rem;margin-top:1.2rem;text-align:center}
+
+    .faq-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:6rem}.faq-title h2{font-size:clamp(4rem,8vw,7rem)}.faq-title p{color:#9da1a8}.faq details{border-top:1px solid var(--line)}.faq details:last-child{border-bottom:1px solid var(--line)}.faq summary{list-style:none;padding:22px 42px 22px 0;cursor:pointer;font-weight:900;text-transform:uppercase;letter-spacing:.04em;position:relative}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";position:absolute;right:8px;color:var(--accent);font-size:1.4rem;top:16px}.faq details[open] summary:after{content:"−"}.faq details p{color:#a9adb4;margin:0;padding:0 40px 22px 0;font-size:.93rem}
+
+    .final-cta{padding:80px 0 100px}.cta-box{background:var(--accent);color:#080908;padding:70px;position:relative;overflow:hidden;clip-path:polygon(22px 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%,0 22px)}.cta-box:after{content:"NØX";position:absolute;right:-1rem;bottom:-3.2rem;font:900 13rem Impact,"Arial Narrow",sans-serif;color:rgba(0,0,0,.09)}.cta-box h2{font-size:clamp(3.8rem,8vw,7.6rem);max-width:850px;position:relative;z-index:1}.cta-box p{max-width:540px;position:relative;z-index:1}.cta-box .btn{position:relative;z-index:1;margin-top:1.2rem;background:#090a0b;color:#fff}.cta-box .btn:hover{background:#fff;color:#000}
+
+    .site-footer{border-top:1px solid var(--line);padding:48px 0}.footer-grid{display:grid;grid-template-columns:1.4fr repeat(2,.6fr);gap:3rem}.site-footer h3{margin-top:0}.site-footer p,.site-footer a{color:#8e9299;font-size:.82rem}.site-footer a{display:block;margin:.5rem 0}.site-footer a:hover{color:var(--accent)}.legal{border-top:1px solid var(--line);margin-top:34px;padding-top:22px;display:flex;justify-content:space-between;gap:1rem;color:#72767e;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em}
+
+    .cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:98;opacity:0;visibility:hidden;transition:.3s}.cart-backdrop.active{opacity:1;visibility:visible}.cart{position:fixed;right:0;top:0;bottom:0;width:min(440px,100%);background:#111318;z-index:99;transform:translateX(105%);transition:transform .45s var(--ease);display:flex;flex-direction:column;box-shadow:-30px 0 70px rgba(0,0,0,.5)}.cart.active{transform:none}.cart-head{display:flex;justify-content:space-between;align-items:center;padding:22px;border-bottom:1px solid var(--line)}.cart-head h2{font-size:1rem;text-transform:uppercase;letter-spacing:.1em}.icon-btn{background:transparent;border:1px solid var(--line);width:40px;height:40px;cursor:pointer;font-size:1.3rem}.cart-items{padding:22px;overflow:auto;flex:1}.empty{text-align:center;color:#8f939a;padding:4rem 1rem}.cart-item{display:grid;grid-template-columns:76px 1fr auto;gap:14px;padding:0 0 20px;margin-bottom:20px;border-bottom:1px solid var(--line)}.mini-jar{height:84px;background:linear-gradient(145deg,var(--item-color),#191c20 55%);border-radius:8px;display:grid;place-items:center;color:#fff;font:900 .7rem Impact,"Arial Narrow",sans-serif;text-align:center}.cart-item h3{font-size:.8rem;text-transform:uppercase;margin:0 0 .35rem}.cart-item p{font-size:.7rem;color:#8e9298;margin:0 0 .7rem}.qty{display:flex;align-items:center;gap:8px}.qty button{background:#20242a;border:1px solid var(--line);width:27px;height:27px;cursor:pointer}.remove{border:0;background:transparent;color:#969aa2;cursor:pointer;font-size:1rem;align-self:start}.cart-foot{border-top:1px solid var(--line);padding:22px}.cart-total{display:flex;justify-content:space-between;font:900 1.25rem Impact,"Arial Narrow",sans-serif;text-transform:uppercase;margin-bottom:1rem}.cart-foot .btn{width:100%}.cart-foot small{display:block;color:#7f838a;text-align:center;margin-top:.8rem}
+    .toast{position:fixed;left:50%;bottom:24px;z-index:120;transform:translate(-50%,30px);opacity:0;background:#fff;color:#08090a;padding:.8rem 1rem;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;transition:.3s;pointer-events:none}.toast.show{transform:translate(-50%,0);opacity:1}
+
+    @media (max-width:980px){
+      .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:#0b0d10;padding:24px 20px;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.menu-toggle{display:block}.cart-trigger{margin-left:auto}
+      .hero-grid{grid-template-columns:1fr}.hero-copy{max-width:700px}.product-stage{min-height:540px}.hero{min-height:auto}
+      .section-head,.flavor-layout,.formula-grid,.ritual-grid,.faq-grid{grid-template-columns:1fr;gap:3rem}.section-head{align-items:start}.flavor-copy{order:-1}.formula-panel{position:static}.bundle-grid,.reviews{grid-template-columns:1fr}.bundle{max-width:650px;width:100%;margin-inline:auto}.review{min-height:220px}.ritual h2,.faq-title h2{max-width:700px}
+    }
+    @media (max-width:680px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}.section{padding:78px 0}.nav{height:64px}.nav-links{top:64px}.top-strip{font-size:.58rem}.hero-grid{padding-top:48px}.hero h1{font-size:clamp(4rem,22vw,6.5rem)}.hero-actions .btn{width:100%}.product-stage{min-height:470px}.orbit,.burst{width:360px;height:360px}.jar{width:220px;height:300px}.lid{width:232px;height:62px;top:-28px}.label{inset:45px 9px 13px;padding:21px 14px}.label-logo{font-size:2.55rem}.tag-a{right:-20px;top:102px}.tag-b{left:-16px;bottom:42px}.float-tag{font-size:.5rem;padding:9px}.flavor-dock{right:8px;bottom:-25px}.flavor-dot{width:42px;height:42px}
+      .section-head{margin-bottom:32px}.section-head h2{font-size:3.8rem}.benefit-grid{grid-template-columns:1fr}.benefit,.benefit:not(:first-child){padding:26px 0;border-right:0;border-bottom:1px solid rgba(0,0,0,.2)}.flavor-copy{padding-left:0;padding-top:3rem}.flavor-copy:before{left:0;top:0}.flavor-card{grid-template-columns:38px 1fr}.flavor-card b{display:none}.ingredients{grid-template-columns:1fr}.formula-panel{padding:25px}.ritual-grid{gap:2.5rem}.step{grid-template-columns:55px 1fr}.cta-box{padding:45px 25px}.cta-box:after{font-size:8rem}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}.legal{flex-direction:column}.cart-trigger .cart-label{display:none}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="top-strip">Demo conceptual · Producto y testimonios ficticios · Venta no disponible</div>
+  <header>
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a class="brand" href="#top" aria-label="NØX Drive, inicio">NØX<b>/</b>DRIVE</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#beneficios">Rendimiento</a><a href="#sabores">Sabores</a><a href="#formula">Fórmula</a><a href="#bundles">Bundles</a><a href="#faq">FAQ</a>
+      </div>
+      <button class="cart-trigger" aria-controls="cart" aria-expanded="false"><span class="cart-label">Carrito</span><span class="cart-count" aria-live="polite">0</span></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="speed-lines" aria-hidden="true"></div>
+      <div class="hero-grid wrap">
+        <div>
+          <p class="eyebrow">Preworkout · Serie 01</p>
+          <h1 class="display">Break<br><span>the static.</span></h1>
+          <p class="hero-copy" id="hero-copy">Sabor cítrico eléctrico. Una mezcla transparente para acompañar tus sesiones más intensas, sin blends propietarios ni promesas imposibles.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary add-single" data-flavor="Ion Lime">Añadir al carrito · 34,90 € <span aria-hidden="true">↗</span></button>
+            <a class="btn btn-ghost" href="#formula">Ver la fórmula</a>
+          </div>
+          <div class="micro"><span>30 servicios</span><span>Fórmula transparente</span><span>Vegano</span></div>
+        </div>
+        <div class="product-stage" aria-label="Envase conceptual NØX Drive">
+          <div class="orbit" aria-hidden="true"></div><div class="burst" aria-hidden="true"></div>
+          <div class="jar-wrap">
+            <div class="jar">
+              <div class="lid"></div>
+              <div class="label">
+                <span class="code">ND//PRE_01 · 300G</span>
+                <div class="label-logo">NØX<i>/DRIVE</i></div>
+                <div class="label-flavor" id="jar-flavor">Ion Lime · Citrus Charge</div>
+                <div class="label-foot"><span>Pre-workout</span><span>30 servings</span></div>
+              </div>
+            </div>
+            <div class="float-tag tag-a"><strong>200 mg</strong> cafeína / servicio</div>
+            <div class="float-tag tag-b"><strong>0 g</strong> azúcar añadido</div>
+          </div>
+          <div class="flavor-dock" aria-label="Elegir sabor">
+            <button class="flavor-dot" style="--swatch:#d8ff38" data-flavor="lime" aria-label="Ion Lime" aria-pressed="true"></button>
+            <button class="flavor-dot" style="--swatch:#ff3b81" data-flavor="berry" aria-label="Riot Berry" aria-pressed="false"></button>
+            <button class="flavor-dot" style="--swatch:#42ddff" data-flavor="frost" aria-label="Polar Shock" aria-pressed="false"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Focus on</span><span>Move heavy</span><span>Own the hour</span><span>Three electric flavors</span><span>Focus on</span><span>Move heavy</span><span>Own the hour</span><span>Three electric flavors</span></div></div>
+
+    <section class="section benefits" id="beneficios">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Construido para el esfuerzo</p><h2 class="display">Energía que entra.<br>Ruido que sale.</h2></div><p>Una fórmula directa, diseñada para integrarse en tu ritual de entrenamiento. Ingredientes declarados, cantidades visibles y una dosis ajustable.</p></div>
+        <div class="benefit-grid">
+          <article class="benefit"><div class="num">01</div><h3>Energía medida</h3><p>200 mg de cafeína por servicio completo. Empieza con medio cacito para valorar tu tolerancia.</p></article>
+          <article class="benefit"><div class="num">02</div><h3>Fórmula abierta</h3><p>Sin “mezclas propietarias”: ves los ingredientes y la cantidad indicada por servicio.</p></article>
+          <article class="benefit"><div class="num">03</div><h3>Sabor sin lastre</h3><p>Tres perfiles definidos, cero azúcar añadido y una mezcla pensada para 300–400 ml de agua.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section flavors" id="sabores">
+      <div class="wrap flavor-layout">
+        <div class="flavor-list" role="group" aria-label="Seleccionar sabor">
+          <button class="flavor-card" style="--swatch:#d8ff38" data-flavor="lime" aria-pressed="true"><span class="swatch"></span><span><strong>Ion Lime</strong><small>Lima ácida · yuzu · sal marina</small></span><b>01</b></button>
+          <button class="flavor-card" style="--swatch:#ff3b81" data-flavor="berry" aria-pressed="false"><span class="swatch"></span><span><strong>Riot Berry</strong><small>Frutos rojos · hibisco · toque ácido</small></span><b>02</b></button>
+          <button class="flavor-card" style="--swatch:#42ddff" data-flavor="frost" aria-pressed="false"><span class="swatch"></span><span><strong>Polar Shock</strong><small>Frambuesa azul · cítrico · efecto frío</small></span><b>03</b></button>
+        </div>
+        <div class="flavor-copy" data-index="01">
+          <p class="eyebrow">Elige tu frecuencia</p>
+          <h3 class="display" id="flavor-title">Ion<br>Lime</h3>
+          <p id="flavor-description">Lima afilada, yuzu brillante y un final mineral. Seco, limpio y deliberadamente intenso.</p>
+          <div class="flavor-notes" id="flavor-notes"><span>Ácido 4/5</span><span>Dulce 2/5</span><span>Final seco</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section formula" id="formula">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Lo que dice la etiqueta</p><h2 class="display">Nada oculto.<br>Todo medido.</h2></div><p>Ejemplo responsable de formulación y etiquetado para una demo. Las cantidades son conceptuales y requerirían validación regulatoria y técnica antes de comercializarse.</p></div>
+        <div class="formula-grid">
+          <div class="ingredients">
+            <article class="ingredient"><div class="ingredient-top"><strong>L-citrulina</strong><b>6.000 mg</b></div><p>Aminoácido habitual en fórmulas preentreno.</p></article>
+            <article class="ingredient"><div class="ingredient-top"><strong>Beta-alanina</strong><b>3.200 mg</b></div><p>Puede causar una sensación temporal de hormigueo.</p></article>
+            <article class="ingredient"><div class="ingredient-top"><strong>Betaína anhidra</strong><b>2.500 mg</b></div><p>Ingrediente común en nutrición deportiva.</p></article>
+            <article class="ingredient"><div class="ingredient-top"><strong>L-tirosina</strong><b>1.000 mg</b></div><p>Aminoácido incluido como parte de la mezcla.</p></article>
+            <article class="ingredient"><div class="ingredient-top"><strong>Cafeína</strong><b>200 mg</b></div><p>Cantidad equivalente aproximada a 2 cafés, según preparación.</p></article>
+            <article class="ingredient"><div class="ingredient-top"><strong>Vitamina B6</strong><b>1,4 mg</b></div><p>100% del valor de referencia de nutrientes de la UE.</p></article>
+          </div>
+          <aside class="formula-panel" aria-label="Información del producto">
+            <p class="eyebrow">Etiqueta conceptual</p><h3 class="display">10 g.<br>30 servicios.</h3>
+            <ul><li><span>Tamaño de servicio</span><strong>1 cacito (10 g)</strong></li><li><span>Peso neto</span><strong>300 g</strong></li><li><span>Azúcar añadido</span><strong>0 g</strong></li><li><span>Alérgenos</span><strong>Ver etiqueta final</strong></li></ul>
+            <p class="warning"><strong>Advertencia:</strong> alto contenido de cafeína (200 mg por servicio). No recomendado para menores, embarazo o lactancia, ni personas sensibles a la cafeína. No combinar con otras fuentes de cafeína. Los complementos no sustituyen una dieta equilibrada ni un estilo de vida saludable. Consulta a un profesional si tomas medicación o tienes una condición médica.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ritual" id="uso">
+      <div class="wrap ritual-grid">
+        <div><p class="eyebrow">Protocolo de uso</p><h2 class="display">Mix.<br>Lock.<br>Move.</h2></div>
+        <div class="steps">
+          <article class="step"><div><h3>Empieza por medio cacito</h3><p>Mezcla 5 g en 250–300 ml de agua para valorar tu tolerancia, especialmente en el primer uso.</p></div></article>
+          <article class="step"><div><h3>Ajusta, no superes</h3><p>Si lo toleras bien, usa hasta 1 cacito (10 g) con 300–400 ml de agua. Máximo 1 servicio al día.</p></div></article>
+          <article class="step"><div><h3>Tómalo con margen</h3><p>Consúmelo 20–30 minutos antes de entrenar y evita tomarlo dentro de las 6 horas previas a dormir.</p></div></article>
+          <p class="ritual-note">Mantén el envase cerrado, en lugar fresco y seco, fuera del alcance de los niños.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="opiniones">
+      <div class="wrap">
+        <div class="proof-head"><span class="demo-pill">Testimonios ficticios · solo demostración visual</span><h2 class="display">Built for the<br>last hard rep.</h2></div>
+        <div class="reviews">
+          <article class="review"><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Ion Lime sabe seco y eléctrico, no a caramelo líquido. La etiqueta clara es exactamente lo que busco.”</blockquote><footer><span class="avatar">AR</span><span><strong>Alex R.</strong>Perfil demo · entrenamiento funcional</span></footer></article>
+          <article class="review"><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“El selector de sabores me ganó, pero Polar Shock sería mi elección. El concepto se siente técnico y premium.”</blockquote><footer><span class="avatar">MV</span><span><strong>Mara V.</strong>Perfil demo · halterofilia</span></footer></article>
+          <article class="review"><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Aprecio que la dosis de cafeína esté visible y que se recomiende empezar con medio cacito.”</blockquote><footer><span class="avatar">JL</span><span><strong>Jules L.</strong>Perfil demo · ciclismo indoor</span></footer></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bundles" id="bundles">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Carga tu ciclo</p><h2 class="display">Una lata.<br>O todo el voltaje.</h2></div><p>Precios y condiciones mostrados únicamente para esta demo. El carrito es interactivo, pero no procesa pagos ni pedidos reales.</p></div>
+        <div class="bundle-grid">
+          <article class="bundle"><h3>Single Unit</h3><p class="sub">1 envase · 30 servicios</p><div class="bundle-price">34,90 €</div><ul><li>Elige cualquier sabor</li><li>Precio demo por servicio: 1,16 €</li><li>Sin suscripción</li></ul><button class="btn btn-primary add-bundle" data-bundle="single">Añadir Ion Lime</button></article>
+          <article class="bundle featured"><span class="bundle-badge">Más elegido</span><h3>Three Phase</h3><p class="sub">3 envases · uno de cada sabor</p><div class="bundle-price">89,00 € <small>ahorra 15,70 €</small></div><ul><li>Ion Lime + Riot Berry + Polar Shock</li><li>90 servicios en total</li><li>Envío demo incluido</li></ul><button class="btn btn-primary add-bundle" data-bundle="trio">Añadir el trío</button></article>
+          <article class="bundle"><h3>Double Down</h3><p class="sub">2 envases · el sabor seleccionado</p><div class="bundle-price">64,00 € <small>ahorra 5,80 €</small></div><ul><li>60 servicios en total</li><li>Mismo sabor, doble reserva</li><li>Sin renovación automática</li></ul><button class="btn btn-primary add-bundle" data-bundle="double">Añadir pack doble</button></article>
+        </div>
+        <p class="demo-note">Demo ficticia: impuestos, disponibilidad y envío no son reales. No se realizará ningún cobro.</p>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="wrap faq-grid">
+        <div class="faq-title"><p class="eyebrow">Antes del primer scoop</p><h2 class="display">Know<br>your mix.</h2><p>Información clara antes de añadir nada al ritual.</p></div>
+        <div>
+          <details><summary>¿Cuánta cafeína contiene?</summary><p>La fórmula conceptual indica 200 mg por servicio completo de 10 g. Si eres sensible a la cafeína, no deberías utilizar este tipo de producto.</p></details>
+          <details><summary>¿Puedo combinarlo con café o bebidas energéticas?</summary><p>No. La recomendación de esta demo es no combinarlo con otras fuentes de cafeína o estimulantes.</p></details>
+          <details><summary>¿Es normal sentir hormigueo?</summary><p>La beta-alanina puede producir una sensación temporal de hormigueo. Si experimentas una reacción adversa o tienes dudas, deja de usarlo y consulta a un profesional.</p></details>
+          <details><summary>¿Los ingredientes y valores son definitivos?</summary><p>No. Esta página es una demo ficticia. Cualquier producto real necesitaría formulación profesional, análisis, etiquetado legal y revisión regulatoria para su mercado.</p></details>
+          <details><summary>¿Existe versión sin cafeína?</summary><p>No en esta colección conceptual. Un producto sin estimulantes debería formularse y etiquetarse por separado, no presentarse como una simple variante.</p></details>
+          <details><summary>¿El carrito realiza compras?</summary><p>No. El carrito demuestra la experiencia de compra, pero el checkout está desactivado y no recopila datos ni procesa pagos.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta"><div class="wrap"><div class="cta-box"><p class="eyebrow">NØX/DRIVE · Pre_01</p><h2 class="display">Pick your signal.</h2><p>Tres perfiles. Una fórmula transparente. Elige el sabor seleccionado y prueba la experiencia de carrito.</p><button class="btn add-single" data-flavor="Ion Lime">Añadir sabor seleccionado · 34,90 €</button></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#top">NØX<b>/</b>DRIVE</a><p>Marca y producto ficticios creados para una demostración de diseño e-commerce. No disponible para venta.</p></div><div><h3>Producto</h3><a href="#sabores">Sabores</a><a href="#formula">Fórmula</a><a href="#uso">Uso</a></div><div><h3>Ayuda</h3><a href="#faq">Preguntas frecuentes</a><a href="#bundles">Bundles demo</a><a href="#opiniones">Opiniones demo</a></div></div><div class="legal"><span>© 2026 NØX/DRIVE · Concepto ficticio</span><span>No es asesoramiento médico · Venta no disponible</span></div></div></footer>
+
+  <div class="cart-backdrop" aria-hidden="true"></div>
+  <aside class="cart" id="cart" aria-hidden="true" aria-labelledby="cart-title" role="dialog" aria-modal="true">
+    <div class="cart-head"><h2 id="cart-title">Tu carga <span aria-hidden="true">//</span> carrito demo</h2><button class="icon-btn cart-close" aria-label="Cerrar carrito">×</button></div>
+    <div class="cart-items" aria-live="polite"><p class="empty">El carrito está vacío.<br>Elige una frecuencia.</p></div>
+    <div class="cart-foot"><div class="cart-total"><span>Total demo</span><span id="cart-total">0,00 €</span></div><button class="btn btn-primary checkout">Checkout desactivado</button><small>Demostración visual. No se recopilan datos ni se realizan cobros.</small></div>
+  </aside>
+  <div class="toast" role="status" aria-live="polite">Añadido al carrito</div>
+
+  <script>
+    (() => {
+      'use strict';
+      const flavors = {
+        lime:{name:'Ion Lime',color:'#d8ff38',rgb:'216,255,56',deep:'#9dbc00',tag:'Ion Lime · Citrus Charge',copy:'Sabor cítrico eléctrico. Una mezcla transparente para acompañar tus sesiones más intensas, sin blends propietarios ni promesas imposibles.',description:'Lima afilada, yuzu brillante y un final mineral. Seco, limpio y deliberadamente intenso.',notes:['Ácido 4/5','Dulce 2/5','Final seco'],index:'01'},
+        berry:{name:'Riot Berry',color:'#ff3b81',rgb:'255,59,129',deep:'#c21d58',tag:'Riot Berry · Red Frequency',copy:'Frutos rojos con pulso ácido. La misma fórmula abierta, ahora con una señal más oscura y frutal.',description:'Frambuesa, cereza ácida e hibisco en un perfil rojo, profundo y sin final empalagoso.',notes:['Ácido 3/5','Dulce 3/5','Final berry'],index:'02'},
+        frost:{name:'Polar Shock',color:'#42ddff',rgb:'66,221,255',deep:'#079fc3',tag:'Polar Shock · Cold Signal',copy:'Frambuesa azul y cítrico frío. Una frecuencia limpia para entrenamientos que empiezan antes que el sol.',description:'Frambuesa azul, limón y un efecto frío definido. Brillante al entrar, glacial al salir.',notes:['Ácido 3/5','Dulce 2/5','Final frío'],index:'03'}
+      };
+      const state={flavor:'lime',cart:[]};
+      const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+      const root=document.documentElement, cart=$('.cart'), backdrop=$('.cart-backdrop'), trigger=$('.cart-trigger'), items=$('.cart-items'), toast=$('.toast');
+      const money=n=>new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(n);
+      function setFlavor(key){
+        const f=flavors[key]; if(!f)return; state.flavor=key;
+        root.style.setProperty('--accent',f.color); root.style.setProperty('--accent-rgb',f.rgb); root.style.setProperty('--accent-deep',f.deep);
+        $('#hero-copy').textContent=f.copy; $('#jar-flavor').textContent=f.tag; $('#flavor-title').innerHTML=f.name.replace(' ','<br>'); $('#flavor-description').textContent=f.description;
+        $('.flavor-copy').dataset.index=f.index; $('#flavor-notes').innerHTML=f.notes.map(n=>`<span>${n}</span>`).join('');
+        $$('[data-flavor]').forEach(el=>{if(el.classList.contains('add-single'))return; el.setAttribute('aria-pressed',String(el.dataset.flavor===key));});
+        $$('.add-single').forEach(b=>{b.dataset.flavor=f.name}); $('.add-bundle[data-bundle="single"]').textContent=`Añadir ${f.name}`;
+      }
+      function openCart(){cart.classList.add('active');backdrop.classList.add('active');cart.setAttribute('aria-hidden','false');trigger.setAttribute('aria-expanded','true');document.body.classList.add('cart-open');setTimeout(()=>$('.cart-close').focus(),100)}
+      function closeCart(){cart.classList.remove('active');backdrop.classList.remove('active');cart.setAttribute('aria-hidden','true');trigger.setAttribute('aria-expanded','false');document.body.classList.remove('cart-open');trigger.focus()}
+      function addItem(name,price,color,qty=1){const found=state.cart.find(i=>i.name===name);found?found.qty+=qty:state.cart.push({name,price,color,qty});renderCart();openCart();showToast()}
+      function renderCart(){
+        const count=state.cart.reduce((s,i)=>s+i.qty,0); $('.cart-count').textContent=count;
+        if(!count){items.innerHTML='<p class="empty">El carrito está vacío.<br>Elige una frecuencia.</p>'}
+        else items.innerHTML=state.cart.map((i,n)=>`<article class="cart-item"><div class="mini-jar" style="--item-color:${i.color}">NØX/<br>DRIVE</div><div><h3>${i.name}</h3><p>${money(i.price)} · demo</p><div class="qty"><button data-action="minus" data-index="${n}" aria-label="Reducir ${i.name}">−</button><strong>${i.qty}</strong><button data-action="plus" data-index="${n}" aria-label="Aumentar ${i.name}">+</button></div></div><button class="remove" data-action="remove" data-index="${n}" aria-label="Eliminar ${i.name}">×</button></article>`).join('');
+        $('#cart-total').textContent=money(state.cart.reduce((s,i)=>s+i.price*i.qty,0));
+      }
+      function showToast(){toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),1800)}
+      $$('[data-flavor]').forEach(el=>el.addEventListener('click',()=>{if(!el.classList.contains('add-single'))setFlavor(el.dataset.flavor)}));
+      $$('.add-single').forEach(btn=>btn.addEventListener('click',()=>{const f=flavors[state.flavor];addItem(f.name,34.9,f.color)}));
+      $$('.add-bundle').forEach(btn=>btn.addEventListener('click',()=>{const f=flavors[state.flavor],type=btn.dataset.bundle;if(type==='single')addItem(f.name,34.9,f.color);if(type==='double')addItem(`${f.name} · Double Down`,64,f.color);if(type==='trio')addItem('Three Phase · Trío',89,'linear-gradient(135deg,#d8ff38,#ff3b81,#42ddff)')}));
+      trigger.addEventListener('click',openCart);$('.cart-close').addEventListener('click',closeCart);backdrop.addEventListener('click',closeCart);
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cart.classList.contains('active'))closeCart()});
+      items.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const n=Number(b.dataset.index),act=b.dataset.action;if(act==='plus')state.cart[n].qty++;if(act==='minus')state.cart[n].qty--;if(act==='remove'||state.cart[n].qty<1)state.cart.splice(n,1);renderCart()});
+      $('.checkout').addEventListener('click',()=>{toast.textContent='Checkout desactivado en esta demo';showToast();setTimeout(()=>toast.textContent='Añadido al carrito',1900)});
+      const menu=$('.menu-toggle'),links=$('.nav-links');menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});$$('.nav-links a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
+      setFlavor('lime');renderCart();
+    })();
+  </script>
+</body>
+</html>
