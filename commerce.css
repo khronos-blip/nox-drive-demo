@@ -28,8 +28,8 @@
 .purchase-faq details{border-bottom:1px solid var(--line)}
 .purchase-faq summary{font:600 15px/1.5 system-ui;cursor:pointer;list-style:none;padding:22px 32px 22px 0;position:relative}
 .purchase-faq summary::-webkit-details-marker{display:none}
-.purchase-faq summary::after{content:"+";position:absolute;right:0;top:19px;font-size:23px;font-weight:400}
-.purchase-faq details[open] summary::after{content:"−"}
+.purchase-faq summary::after{content:"OPEN";position:absolute;right:0;top:24px;font:800 9px/1 system-ui;letter-spacing:.1em}
+.purchase-faq details[open] summary::after{content:"CLOSE"}
 .purchase-faq details p{font:14px/1.8 system-ui;margin:0 30px 24px 0;opacity:.8}
 .purchase-faq a{text-decoration:underline}
 .closing-offer{padding:80px 0;text-align:center}

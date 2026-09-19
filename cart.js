@@ -44,7 +44,7 @@ window.createDemoCart = function(config) {
     total.textContent = money(rows.reduce((s,x)=>s+x.price*x.quantity,0));
     foot.hidden = completed;
     if (completed) {
-      list.innerHTML = '<div class="demo-complete"><span aria-hidden="true">✓</span><h3>Demo complete.</h3><p>No order was placed. No payment or personal information was collected.</p><button class="demo-return" type="button">Continue exploring</button></div>';
+      list.innerHTML = '<div class="demo-complete"><span aria-hidden="true">DONE</span><h3>Demo complete.</h3><p>No order was placed. No payment or personal information was collected.</p><button class="demo-return" type="button">Continue exploring</button></div>';
       list.querySelector('button').addEventListener('click', hide);
       return;
     }
@@ -52,7 +52,7 @@ window.createDemoCart = function(config) {
       <img src="${x.image}" alt="" width="88" height="88">
       <div><h3>${x.name}</h3><p>${x.note}</p><strong>${money(x.price*x.quantity)}</strong>
         <div class="shop-quantity" aria-label="Quantity for ${x.name}">
-          <button type="button" data-action="minus" data-id="${x.id}" aria-label="Decrease ${x.name} quantity">−</button>
+          <button type="button" data-action="minus" data-id="${x.id}" aria-label="Decrease ${x.name} quantity">-</button>
           <output aria-live="polite">${x.quantity}</output>
           <button type="button" data-action="plus" data-id="${x.id}" aria-label="Increase ${x.name} quantity">+</button>
           <button class="shop-remove" type="button" data-action="remove" data-id="${x.id}" aria-label="Remove ${x.name}">Remove</button>
