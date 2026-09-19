@@ -12,16 +12,11 @@ function select(key) {
   document.documentElement.style.setProperty('--accent',f.accent);
   document.documentElement.style.setProperty('--rgb',f.rgb);
   document.body.dataset.flavor=key;
-  setProductPhoto($('#product-image'),key+'-hero',f.name+' pre-workout jar in its own photographic setting');
-  setProductPhoto($('#frequency-image'),key+'-detail','Detail photograph of '+f.name+' and its sensory presentation');
+  setProductPhoto($('#product-image'),key==='lime'?'lime-hero':'nox-'+key,key==='berry'?'Overhead photograph of Riot Berry lying diagonally on steel':key==='polar'?'An athlete holding a Polar Shock jar':'Ion Lime jar with fresh citrus');
   $('#product-index').textContent=f.index;
   $('#telemetry-name').textContent=f.name+' / '+f.index;
   $('#telemetry-note').textContent=f.signal;
   $('#hero-summary').textContent=f.hero;
-  $('#frequency-index').textContent='Frequency '+f.index;
-  $('#frequency-name').innerHTML=f.split;
-  $('#frequency-description').textContent=f.description;
-  $('#frequency-notes').replaceChildren(...f.notes.map(n=>{const span=document.createElement('span');span.textContent=n;return span;}));
   $('#hero-cta').textContent='Add '+f.name+' · $34';
   $('#quick-name').textContent=f.name;
   $('#pack-selection').textContent=f.name;
@@ -31,7 +26,7 @@ function add(bundle) {
   const f=flavors[active], trio=bundle==='trio', double=bundle==='double';
   cart.add({id:trio?'trio':bundle+'-'+active,name:trio?'Full Spectrum':(double?'Dual Signal':'Single Frequency')+' / '+f.name,
     note:trio?'3 tubs · Ion Lime + Riot Berry + Polar Shock · 90 servings':(double?'2 tubs · 60 servings':'1 tub · 30 servings'),
-    price:trio?89:double?64:34,image:'assets/'+active+'-hero-640.webp'});
+    price:trio?89:double?64:34,image:'assets/'+(active==='lime'?'lime-hero':'nox-'+active)+'-640.webp'});
 }
 $$('button[data-flavor]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.flavor)));
 $$('[data-bundle]').forEach(b=>b.addEventListener('click',()=>add(b.dataset.bundle)));

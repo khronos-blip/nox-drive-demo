@@ -106,6 +106,7 @@ window.createDemoCart = function(config) {
   return {add(product) { completed=false; const old=lines.get(product.id); old ? old.quantity++ : lines.set(product.id,{...product,quantity:1}); render();show();announce(product.name+' added'); }};
 };
 window.setProductPhoto = function(img, name, alt) {
-  img.srcset = 'assets/'+name+'-640.webp 640w, assets/'+name+'.webp 1254w';
+  const width = name.startsWith('nox-') ? 1122 : 1254;
+  img.srcset = 'assets/'+name+'-640.webp 640w, assets/'+name+'.webp '+width+'w';
   img.src = 'assets/'+name+'.webp'; img.alt = alt;
 };
