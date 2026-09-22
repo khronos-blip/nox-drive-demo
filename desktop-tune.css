@@ -1,0 +1,24 @@
+@media(min-width:901px){
+  header{height:86px}
+  .brand{font-size:27px}
+  .nav-links{font-size:14px;gap:32px;letter-spacing:.065em}
+  .cart-trigger{font-size:14px}
+  .campaign .eyebrow{font-size:13px}
+  .campaign .button{min-height:58px;font-size:14px}
+  .campaign .hero-safety{font-size:13px}
+  .campaign-caption{font-size:12px}
+  .shop-heading .label,.pack-title .label{font-size:13px}
+  .shop-heading-note{font-size:18px}
+  .signal-options button{min-height:95px}
+  .signal-options span,.signal-options small{font-size:14px}
+  .signal-buy>p{font-size:18px}
+  .signal-buy .button{font-size:15px;min-height:62px}
+  .pack small,.pack>span,.pack-title>p{font-size:14px}
+  .pack-note,.technical>summary{font-size:14px}
+  .faq summary,.faq p{font-size:15px}
+  .footer{font-size:14px}
+}
+.flavor-detail{display:inline-flex;min-height:42px;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--accent);color:var(--accent);font:800 13px/1.2 system-ui;letter-spacing:.02em}
+.flavor-detail:hover{opacity:.7}
+@media(max-width:900px){.mobile-about{margin-left:auto;font-size:12px;font-weight:800;text-transform:uppercase}.cart-trigger{margin-left:0}}
+@media(min-width:901px){.mobile-about{display:none}}

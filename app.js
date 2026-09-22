@@ -18,6 +18,8 @@ function select(key) {
   $('#telemetry-note').textContent=f.signal;
   $('#hero-summary').textContent=f.hero;
   $('#hero-cta').textContent='Add '+f.name+' · $34';
+  $('#flavor-detail').href='product.html?flavor='+key;
+  $('#flavor-detail').textContent='Explore '+f.name+' ↗';
   $('#quick-name').textContent=f.name;
   $('#pack-selection').textContent=f.name;
   $$('button[data-flavor]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.flavor===key)));
@@ -33,4 +35,10 @@ $$('[data-bundle]').forEach(b=>b.addEventListener('click',()=>add(b.dataset.bund
 $$('[data-product]').forEach(b=>b.addEventListener('click',()=>{select(b.dataset.product);add('single');}));
 $('#quick-add').addEventListener('click',()=>add('single'));
 $('#hero-cta').addEventListener('click',()=>add('single'));select('lime');
+const requested=new URLSearchParams(location.search).get('add');
+if(Object.hasOwn(flavors,requested)){
+  history.replaceState(null,'',location.pathname+'#shop');
+  select(requested);
+  add('single');
+}
 })();
