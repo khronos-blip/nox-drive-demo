@@ -5,4 +5,8 @@ img{height:auto}
 .related-card img{height:auto;aspect-ratio:1;object-fit:contain}
 .product-hero>*,.about-hero>*{min-width:0}
 .display{overflow-wrap:break-word}
+.display{line-height:1}
+.related h2,.about-band h2,.about-end h2{line-height:1.05}
+.about-band h2{margin-bottom:22px}
+@media(max-width:780px){.related-card{font-size:14px;line-height:1.45}.related-card img{margin-bottom:12px}}
 @media(max-width:780px){.product-photo img,.product-image img{max-height:480px;aspect-ratio:auto}.related-card{overflow-wrap:break-word}}
