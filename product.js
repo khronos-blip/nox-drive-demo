@@ -21,4 +21,5 @@
   img.alt=product.alt;
   document.getElementById('product-add').href='index.html?add='+selected+'#shop';
   document.querySelector('[data-related="'+selected+'"]').setAttribute('aria-current','page');
+  setDetailProduct({id:'single-'+selected,name:'Single Frequency / '+product.name,note:'1 tub · 30 servings',price:34,image:'assets/'+product.image+'-640.webp'});
 })();
