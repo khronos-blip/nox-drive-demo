@@ -22,3 +22,5 @@
 .flavor-detail:hover{opacity:.7}
 @media(max-width:900px){.mobile-about{margin-left:auto;font-size:12px;font-weight:800;text-transform:uppercase}.cart-trigger{margin-left:0}}
 @media(min-width:901px){.mobile-about{display:none}}
+/* Visibility and inertness change immediately so keyboard focus can enter. */
+.cart{transition-property:transform}
