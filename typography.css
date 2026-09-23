@@ -10,6 +10,11 @@ body .campaign .hero-safety,body .purchase-meta>span,body .purchase-meta small,b
 body .signal-options .option-action,body .pack i,body .close{font-size:14px!important}
 body .pack i{min-width:44px;min-height:44px}
 @media(max-width:780px){body .kicker,body .eyebrow,body .label{font-size:14px!important;letter-spacing:.035em}body .signal-options span,body .signal-options small{font-size:14px!important}}
+/* Comfortable targets and legible counts across all page types. */
+.detail-bag{font-size:14px}
+.shop-quantity{flex-wrap:wrap;gap:6px}
+.shop-quantity button{min-width:44px;min-height:44px}
+.detail-header nav a,.detail-header .navlinks a,.navlinks>a,.nav-links>a,.nav .links>a{display:inline-flex;align-items:center;min-height:44px}
 /* One type system per brand across home, About, product and bag. */
 body{font-size:18px;line-height:1.65}
 body,body *{font-family:var(--brand-body)!important}
